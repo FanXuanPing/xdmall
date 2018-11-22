@@ -1,7 +1,7 @@
 <!-- 首页头部 -->
 <template>
 	<div>
-		<div class="homeheader">首页头部</div>
+		<div class="homeheader">首页头部111</div>
 	</div>
 </template>
 
