@@ -4,12 +4,14 @@
 		<Header></Header>
 		<home-header></home-header>
 		首页
+		<Footer></Footer>
 	</div>
 </template>
 
 <script>
 	import Header from '@/components/header/index'
 	import homeHeader from '@/components/header/homeHeader'
+	import Footer from '@/components/footer'
 	export default {
 		name:'Index',
 		data(){
@@ -19,7 +21,8 @@
 		},
 		components:{
 			Header,
-			homeHeader
+			homeHeader,
+			Footer
 		}
 	}
 </script>

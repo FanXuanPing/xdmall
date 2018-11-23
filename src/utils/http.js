@@ -1,17 +1,22 @@
-import axios from 'axios';
-import { Message } from 'element-ui';
+import axios from 'axios'
+import {baseUrl} from "@/api"
+import qs from "qs"
 
 // 添加请求拦截器
-axios.interceptors.request.use(function (config) {
+
+// axios.defaults.headers['cCode'] = localStorage.getItem('cCode');
+axios.interceptors.request.use(config=>{
+	var aaa = localStorage.getItem('cCode');
+			 // config.headers['cCode'] = aaa; 
     // 在发送请求之前做些什么
     return config;
-  }, function (error) {
+  }, error=> {
     // 对请求错误做些什么
     return Promise.reject(error);
   });
   
   // 添加响应拦截器
-axios.interceptors.response.use(function (response) {
+axios.interceptors.response.use((response)=>{
     // 对响应数据做点什么
 	if(response.status=="200"){
 		return response;
@@ -19,7 +24,7 @@ axios.interceptors.response.use(function (response) {
 		//请求失败
 		return 
 	}
-  }, function (error) {
+  }, error=> {
     // 对响应错误做点什么
     return Promise.reject(error);
   });
@@ -29,11 +34,11 @@ axios.defaults.baseURL = baseUrl;
 console.log("base_url="+baseUrl);
 //设置默认请求头
 axios.defaults.headers = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'token':''
-}
+		'Content-Type':'application/x-www-form-urlencoded',
+};
 axios.defaults.timeout = 10000
 axios.defaults.responseType= 'json';
+
 export default {
   //get请求
     get (url,param) {
@@ -41,7 +46,7 @@ export default {
         axios({
           method: 'get',
           url,
-          params: param
+          params: param,
         }).then(res => {
           resolve(res)
         })
@@ -55,11 +60,32 @@ export default {
           url,
           data: qs.stringify(param),
           headers:{
-          	'Content-Type':'application/x-www-form-urlencoded'
+          	'Content-Type':'application/x-www-form-urlencoded',
+						// 'cCode':cCode
           }
         }).then(res => {
           resolve(res)
         })
       })
-     }
+     },
+		 
+		 
+		 
+		 /**
+			* 带自定义header的请求，
+			*/
+// 		 postAndHeader (url,param,header) {
+// 	
+// 		  var headers = $.extend({'Content-Type':'application/x-www-form-urlencoded'},header);
+// 		 	return new Promise((resolve,reject) => {
+// 		 		axios({
+// 		 			method: 'post',
+// 		 			url,
+// 		 			data: qs.stringify(param),
+// 		 			headers:headers
+// 		 		}).then(res => {
+// 		 			resolve(res)
+// 		 		})
+// 		 	})
+// 		 }
   }
