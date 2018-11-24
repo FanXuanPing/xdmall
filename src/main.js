@@ -8,7 +8,7 @@ import store from '@/vuex/store'
 
 Vue.config.productionTip = false
 
-Vue.use(VueLazyLoad,{
+Vue.use(VueLazyLoad,{ //图片懒加载
     error:'',
     loading:'',
 		preLoad:1

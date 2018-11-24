@@ -1,14 +1,25 @@
 import axios from 'axios'
 import {baseUrl} from "@/api"
+import {getCookie} from '@/utils/cookie.js'
+import { Message, Loading } from 'element-ui';
 import qs from "qs"
 
 // 添加请求拦截器
 
 // axios.defaults.headers['cCode'] = localStorage.getItem('cCode');
 axios.interceptors.request.use(config=>{
-	var aaa = localStorage.getItem('cCode');
-			 // config.headers['cCode'] = aaa; 
     // 在发送请求之前做些什么
+		const token = getCookie('session');
+		config.data=JSON.stringify(config.data);
+		// config.headers.Authorization = `token ${token}`;
+		config.headers={
+			'Content-Type':'application/x-www-form-urlencoded' //设置跨域头部
+		};
+		if(token){
+			config.params={'token':token};
+			config.headers.Authorization=token;
+		}
+		
     return config;
   }, error=> {
     // 对请求错误做些什么
@@ -89,3 +100,7 @@ export default {
 // 		 	})
 // 		 }
   }
+	
+	
+	
+	
