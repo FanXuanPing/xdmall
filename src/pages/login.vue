@@ -7,6 +7,7 @@
 </template>
 
 <script>
+	import {mapGetters} from 'vuex'
 	export default {
 		name:'Login',
 		data(){
@@ -15,6 +16,7 @@
 			}
 		},
 		computed:{
+			
 			username(){
 				return this.$store.state.login.username
 			}
