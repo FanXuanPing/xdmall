@@ -4,9 +4,10 @@ import api from '@/api/api'
 import {getCookie} from '@/utils/cookie'
 
 import Index from '@/pages/Index'
-const Login = resolve => require(['@/pages/login'], resolve);
-const Register = resolve => require(['@/pages/register'], resolve);
-
+const Login = resolve => require(['@/pages/login'], resolve);     //登录界面
+const Register = resolve => require(['@/pages/register'], resolve);//注册界面
+const GoodsCar =resolve => require(['@/pages/goods/goodscar'],resolve);  //购物车界面
+const GoodsList =resolve => require(['@/pages/goods/goodlist'],resolve); //商品页面
 
 
 
@@ -14,6 +15,7 @@ const Register = resolve => require(['@/pages/register'], resolve);
 Vue.use(Router)
 
 const router =  new Router({
+	mode:'history',
   routes: [
     {
       path: '/', //首页
@@ -33,10 +35,14 @@ const router =  new Router({
 			meta:{requireAuth:true}
 		},
 		{
-			path: '/', //首页
-			name: 'Index',
-			component: Index,
-			
+			path: '/Goodscar', //购物车界面
+			name: 'GoodsCar',
+			component: GoodsCar,
+		},
+		{
+			path: '/GoodList', //商品列表
+			name: 'GoodList',
+			component: GoodsList,
 		}
   ]
 })

@@ -12,10 +12,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
 			'/api': {  //使用"/api"来代替"" 
-				target: '', //源地址 
+				target: 'https://www.easy-mock.com/mock/5c08c29beeba0b5d15719075/dsxd', //源地址 
 				changeOrigin: true, //改变源 
 				pathRewrite: { 
-					'^/api': '' //路径重写 
+					'^/api': '/' //路径重写 
 					} 
 			} 
 		},

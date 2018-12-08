@@ -1,6 +1,7 @@
 <template>
 	<div class="header">
 		头部
+		<div @click="goCar()">购物车</div>
 	</div>
 </template>
 
@@ -10,6 +11,11 @@
 		data(){
 			return{
 				
+			}
+		},
+		methods:{
+			goCar(){
+				this.$router.push({name:'GoodList'})
 			}
 		}
 	}

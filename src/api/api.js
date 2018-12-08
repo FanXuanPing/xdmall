@@ -1,9 +1,8 @@
-import api from '@/api/index'
+import {api} from '@/api/index'
 import http from '@/utils/http'
 
 
 
-// export function(data){
-// 	
-// 	return http.post(api.url,data)
-// }
+export function getgoodlist(data){
+	return http.get(api.GOODSLIST,data)
+}
